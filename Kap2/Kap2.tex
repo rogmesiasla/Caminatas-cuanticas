@@ -1,0 +1,224 @@
+
+\section{Caminatas aleatorias clásicas}\label{CaminatasClasicas}
+El espacio de movimientos puede ser espacio euclídeo. La longitud de los pasos es siempre la misma, y un paso se da cada cierto intervalo de tiempo igual. Es posible hacer las cantidades tan pequeñas como se quiera y considerar tiempo y espacio continuos.\\
+Estudiaremos la posición de una partícula tras seguir una caminata de esta naturaleza: con pasos de igual longitud sobre la línea infinita, y una moneda como evento aleatorio. Nos interesa conocer la posición de la partícula.\\
+
+%Emergencia de la simetría rotacional.Ecuación de difusión. Polímeros y caminatas aleatorias. Invarianza de escala, y universalidad. 
+
+\subsection{Caminata aleatoria clásica sobre una recta.}
+
+Si las probabilidades de ir a derecha o izquierda son iguales a $1/2$, y la posición de inicio es $x_0=0$, 
+\begin{equation}
+\langle x\rangle=0,\quad \langle x_ix_j\rangle=l^2\delta_{i,j}
+\end{equation}{}
+Después de $t$ pasos, la varianza $\sigma^2=tl^2$:
+\begin{equation}{}
+\sigma^2=\Big \langle \big(\sum_i^t x_i \big)^2 \Big \rangle = \sum_{i,j}^t \langle x_i x_j \rangle = tl^2,
+\end{equation}
+El valor esperado de la posición crece como $\sqrt{N}$, $\sigma\sim \sqrt{N}$. Si pensamos en $t$ como el tiempo,\\
+Veamos cómo emerge el límite continuo:
+\begin{equation}
+    \langle\Delta y^i\rangle=\int d^D \Delta y [\Delta y p(\Delta \Vec{y})]=0,
+\end{equation}{}
+
+\begin{equation}
+    \langle\Delta y^i\Delta y^j\rangle=\int d^D \Delta y [\Delta y^i\Delta y^jp(\Delta \Vec{y})]=\langle(\Delta y)^2\rangle\frac{\delta_{i,j}}{D}
+\end{equation}{}
+
+\begin{equation}
+P_N(\Vec{x})=\int d^D \Delta y P_{N-1}(\Vec{x}-\Delta \Vec{y})p(\Delta \Vec{y})    
+\end{equation}{}
+
+\begin{equation}
+    \frac{\partial\rho}{\partial t}=K\nabla^2\rho
+    \end{equation}{}
+que es la ecuación de difusión, cuya solución es gausiana: $\rho(x,t)=\frac{e^{-x^2/4Kt}}{(4\pi Kt)^{D/2}}$. Esta ecuación macroscópica es un comportamiento emergente de las caminatas aleatorias, lo que significa que es un comportamiento muy independiente de  Otra característica emergente de estas caminatas es que en tiempos muy grandes su escala es invariante, que corresponde a un \textit{fractal}.
+
+\subsection{Caminata sobre una red}
+\begin{equation}
+    P_N(\Vec{x})=\int_{-\pi}^\pi\frac{d^Dk}{(2\pi)^D}[\cos{(\Vec{k}\cdot\Vec{x})}]\prod_{n=1}^{N}p_n(\Vec{k})
+\end{equation}{}
+\begin{equation}
+    P_N(\Vec{x})=\int_{-\pi}^\pi\frac{d^Dk}{(2\pi)^D}[\cos(\Vec{k}\cdot\Vec{x})]\left(\frac{1}{D}\sum_{j=1}^D\cos{k_j}\right)^N
+\end{equation}{}
+\begin{equation}
+    P_N(J)=\frac{1}{2^N}\frac{N!}{(1/2(N+J))!(1/2(N-J))!}
+\end{equation}{}
+
+\begin{equation}
+    P_N=\int_{-\pi}^\pi\frac{dk_1}{(2\pi)[\cos{(k_1J)}](\cos{k_1})^N}
+\end{equation}{}
+\subsection{Dependencia de la dimensión}
+Presentemos un curioso resultado relacionado con la dimensión del espacio. 
+
+\begin{equation}
+    \mathcal{R}=\sum_{n=0}^\infty u_n
+\end{equation}{}
+
+\begin{equation}
+    \mathcal{R}=\sum_{k=1}^\infty ku^{k-1}(1-u)=(1-u)^{-1}
+\end{equation}{}
+
+\begin{equation}
+    u_n=\int_{-\pi}^\pi \frac{d^Dk}{(2\pi)D}\left(\frac{1}{D}\sum_{j=1}^D\right)^n
+\end{equation}{}
+\begin{equation}
+    \mathcal{R}=\sum_{n=0}^\infty u_n=\int_{-\pi}^\pi\frac{d^Dk}{(2 \pi)^D}\left(1-\frac{1}{D}\sum_{j=0}^D\cos k_j\right)^{-1}
+\end{equation}{}
+\begin{equation}
+    \mathcal{R}\approx 2D\int_{k\approx0}\frac{dk_1\dots dk_D}{(2\pi)^D}(k_1^2+\cdots+k_D^2)^{-1}\frac{2D}{(2\pi)^D}\int_{k\approx0}\frac{k^{D-1}dk}{k^2}
+\end{equation}{}
+Para $D=3$, la integral Watson:
+\begin{align}
+    \mathcal{R}&=\frac{2}{(2\pi)^3}\int_{-\pi}^\pi dk_1\int_{-\pi}^\pi dk_2\int_{-\pi}^\pi dk_3[3-(\cos k_1+\cos k_2 +\cos k_3)]^{-1}\\
+    &=\frac{\sqrt{6}}{32\pi^3}\Gamma(\frac{1}{24})\Gamma(\frac{5}{24})\Gamma(\frac{7}{24})\Gamma(\frac{11}{24})
+\end{align}{}
+Para 1 dimensión:
+\begin{equation}
+    u_{2n}=^{2n}C_n\frac{1}{2^{2n}},
+\end{equation}{}
+usando la aproximación de Stirling para factoriales $n!\approx \sqrt{2\pi n}e^{-n}n^n$ para obtener $u_{2n}\approx 1/\sqrt{\pi n}$,
+\begin{equation}
+    m=\sum_nu_{2n}=\sum_n\frac{1}{\sqrt{\pi n}}=\infty
+\end{equation}{}
+Para D=2 el resultado es el cuadrado de D=1,
+
+\begin{equation}
+u_n(\Vec{x})=\frac{1}{(2\pi)^D}\frac{1}{2^n}\int_{-\pi}^\pi dk_1\int_{-\pi}^\pi dk_2(\cos{k_1}+\cos{k_2})^n   
+\end{equation}
+con un cambio de variables $(k_1,k_2)\xrightarrow{}(k_1+k_2,k_1-k_2)$, la integral es el producto de dos integrales para el caso D=1.
+
+\subsection{Cadenas de Markov}
+Un proceso estocástico en un espacio de estados discreto $X$, de tamaño $n=|X|$, es una cadena de Markov. Se describe por una \textit{matriz estocástica} $P$, en la que $p_{ab}\in [0,1]$ es la probabilidad de transición de $a$ a $b$, y para todo $a$:
+\begin{equation}
+    \sum_{b\in X}p_{ab}=1
+\end{equation}
+Toda cadena de Markov tiene un \textit{grafo dirigido subyacente} con $n$ vértices etiquetados con los nombres de $X$ y arcos dirigidos etiquetados con las probabilidades no nulas $p_{xy}$. La distribución de probabilidad sobre los vértices se representa por un vector fila $\Vec{u}$ con elementos reales no negativos que suman $1$. $\vec{u}$ se transforma con una aplicación de $P$ según $\vec{u}P=\Vec{v}$. Cuando $\vec{\pi}P=\vec{\pi}$, llamamos \textit{distribución estacionaria} a $\vec{\pi}$.\\
+
+\noindent Una cadena de Markov es:
+\begin{itemize}
+    \item \textit{irreducible}, cuando cualquier vértice del grafo subyacente puede ser alcanzarse en un número de pasos finito
+    \item \textit{aperiódica}
+    \item \textit{ergódica} si es irreducible y aperiódica.
+\end{itemize}
+Falta \textit{reversible}\\
+\textbf{Teorema de Perron-Froebenious}: Sea $P$ una matriz estocástica. Entonces:
+\begin{itemize}
+    \item todos los autovalores de $P$ son a lo más $1$ en valor absoluto y $1$ es un autovalor de $P$;
+    \item si $P$ es irreducible, entonces el 1-autovector es único y estrictamente positivo (esto es, es de la forma $c\vec{\pi}$, donde $c\neq 0$ y $\vec{\pi}$ es una distribución no nula en todas las entradas);
+    \item si además de ser irreducible, $P$ es aperiódica, es decir, es ergódica, los demás autovalores de $P$ son estrictamente menores que $1$ en valor absoluto.
+\end{itemize}
+
+\subsection{Procesos de Markov\label{ProcesosMarkov}}
+La distribución sobre la gráfica $\Gamma(V,E)$ es $\Vec{p}(t)=(p_1(t),\dots,p_{|V|})$. $p_i(t)$ corresponde a la probabilidad de estar en el vértice $i$. Un paso (o actualización) se da de acuerdo a la \textit{matriz adyacente} $(M)_{i,j}$ que tiene entradas cero sólo para las direcciones que no tienen conexión:
+
+\begin{equation}
+    \dfrac{d\Vec{p}(t)}{dt}=M\Vec{p}(t)
+\end{equation}{}
+Por ejemplo la matriz para el $N$-ciclo $M_N$ transforma un estado incial $\Vec{p}^0=(1,0,\dots,0)$ en $\Vec{p}^1=(0,\frac{1}{2},0,\dots,\frac{1}{2})$, $\Vec{p}^2=(\frac{1}{2},0,\frac{1}{4},\dots,0,\frac{1}{4},0)$, $\Vec{p}^3=(0,\frac{3}{8},0,\dots,0,\frac{1}{8},0,\frac{3}{8})$, etc.
+
+\begin{equation*}
+    M_N=\dfrac{1}{2}
+    \begin{pmatrix}
+    0& 1& 0& \cdots& 0 &1 \\
+    1& 0& 1& 0& \cdots& 0\\
+    0& 1& 0& 1& \cdots& 0\\
+    &\vdots & &\ddots & & \\
+    0& \cdots & 1 &0 &1 &0 \\
+    0& \cdots&0 &1 &0 &1 \\
+    1& 0& \cdots&0 &1 &0
+    \end{pmatrix}{}
+\end{equation*}{}
+El movimiento browninano es el ejemplo más relevante de un proceso aleatorio en tiempo y espacio continuos.
+
+\subsection{\textit{Mixing time} y \textit{hitting time}}
+
+\cite{shao} Las caminatas clásicas sobre gráficas convergen siempre hacia una distribución límite $\Vec{\pi}$. El \textit{mixing time} $M_\epsilon$ es una manera posible de medir la tasa de convergencia de una distribución y se define como
+\begin{equation*}
+    M_\epsilon=\text{min}\left\{T|\forall t \geq T,\Vec{p}^0:||\Vec{p}^{t}-\Vec{\pi}||\leq\epsilon\right\}
+\end{equation*}{}
+donde la distancia entre dos distribuciones $\Vec{p}$, $\Vec{q}$:
+\begin{equation}
+    ||\Vec{p}-\Vec{q}||=\sum_i|\Vec{p}_i-\Vec{q}_i|
+\end{equation}{}
+Resulta que $M_\epsilon$ tiene los siguientes valores límites, que contienen los primeros dos autovalores de la matriz de transiciones $M$, $\lambda_1=1$ y $\lambda_2$. Se mostrará cómo en el caso cuántico $M_\epsilon$ depende de \textit{todos} los autovalores de la evolución unitaria.
+\begin{equation*}{}
+\dfrac{\lambda_2}{(1-\lambda_2)\log2\epsilon}\leq M_\epsilon\leq\dfrac{1}{(1-\lambda_2)}(\max_i\log\Vec{\pi}_i^{-1}+\log\epsilon^{-1})
+\end{equation*}
+\textit{Hitting time} es el número de pasos que le toma a una caminata ir desde un vértice $i$ hasta uno $j$ dentro de la gráfica. Es usual el uso del promedio de este tiempo. Dos ejemplos que revisaremos para el caso cuántico son:\\
+\textbf{Círculo:} En el $N$-círculo, $M_\epsilon\sim N^2$, y también lo es el hitting time promedio $T\sim N^2$.\\
+\textbf{Hipercubo:} En el $d-$hipercubo $M_\epsilon\sim d\log d\log (1/\epsilon)$, y 
+$T\sim 2^d$. Este último es mejorado exponencialmente por el caso cuántico.
+
+\section{Modelos continuo y discreto}
+
+\section{Caminatas en tiempo discreto}
+Una generalización natural de las caminatas sobre la línea consiste en considerar a los vértices como las posiciones posibles de la partícula, con una moneda de dimensión $d$ para optar por una traslación por alguno de las aristas $\left\{\ket{j}\otimes\ket{v}\right\}$. Entonces el nuevo espacio es $\mathcal{H}=\mathcal{H}_C\otimes\mathcal{H}_P$. Cada paso está dado por $\hat{U}=\hat{S}(\hat{C}\otimes\mathbb{I})$. 
+
+\begin{equation*}{}
+\hat{S}\ket{j}\otimes\ket{v}=
+    \left\{
+    \begin{array}{cl}
+    \ket{j}\otimes\ket{w}    & \text{if}\,\;\;\;\;e^j_v=(v,w) \\
+    0  & \text{otherwise}
+    \end{array}{}
+    \right.
+\end{equation*}{}
+Cualquier gráfica finita puede hacerse regular añadiendo \textit{loops}, que son aristas que conectan un mismo punto, sobre los vértices de menor grado hasta que todos logren la dimensión $d$ de la gráfica.
+La nueva moneda de dimensión $d$, $C_d$ es unitaria y tienes más grados de libertad que la que la de secciones arriba $d=2$. Una moneda balanceada es tal que el resultado de medir después de su lanzamiento sea igual para cada dirección. La moneda DFT es un ejemplo natural de estas monedas:
+
+\begin{equation*}
+DFT=\frac{1}{\sqrt{d}}
+\begin{pmatrix}
+1 & 1 & 1 & \cdots & 1\\
+1 & \omega & b & \cdots & \omega^{(d-1)}\\
+ &  &\vdots & \cdots & \\
+1 & \omega^{(d-1)}  & \omega^{2(d-1)} & \cdots & \omega^{(d-1)(d-1)}
+\end{pmatrix},
+\end{equation*}{}
+donde $\omega=\exp{(i2\pi/d)}$ es la raíz de orden $d$ de la unidad. Después del lanzamiento la probabilidad para cada dirección es la misma: $(1/d)$.\\
+Consideremos el hipercubo que es ejemplo de otra clase de simetría, correspondiente a una moneda desbalanceada. El hipercubo en $d$ dimensiones tiene $2^n$ vértices que son cadenas de $n$-bits, e.g. $010011$ pertenece al $6$-hipercubo. El peso de Hamming de un vértice es el número de $1$'s en su nombre. Dos vértices están conectados sila direncia de pesos es $1$.
+
+\begin{equation*}
+G_{a,b}\doteq
+\begin{pmatrix}
+a & b & b & \cdots & b\\
+b & a & b & \cdots & b\\
+ & \vdots & & \ddots & \\
+b & b  & b & \cdots & a
+\end{pmatrix}
+\end{equation*}{}
+
+con $1-\frac{2}{d}\leq|a|\leq 1$, y $b=\pm(1-a)$. El conocido operador de Grover $G$ es cuando $a=1-\frac{2}{d}$, correspondiente al caso extremo más lejando de la identidad, $G_{0,1}=\mathbb{I}$.
+
+\subsection{Caminata cuántica de tiempo continuo}
+Childs definió las caminatas cuánticas de tiempo continuo en analogía con los procesos de Markov. Vimos en la sección \ref{CaminatasClasicas} que la matriz \textit{adyacente} de la gráfica señala las posibles transiciones entre distintos vértices, y que la evolución temporal es solución de la ecuación (\ref{ProcesosMarkov}). La ecuación de Schrödinger, en su presentación para una base finita es similar, si hacemos que $\hat{H}$ sea la matriz de adyacencia de nuestra gráfica.
+\begin{equation}
+\frac{dp_a(t)}{dt}=\sum_bM_{a,b}p_b(t),\qquad     
+-i\frac{d}{dt}\braket{a|\psi(t)}=\sum_b\braket{a|\hat{H}|b}\braket{b|\psi(t)}
+\end{equation}{}
+La transición es posible \textit{todos} los tiempos y no solamente en tiempos discretos. En un tiempo muy pequeño $\epsilon$, la probabilidad de transición para la partícula es $\gamma \epsilon\,\,\,(\epsilon\xrightarrow{}0)$, así que $\gamma$ es la probabilidad de transición por unidad de tiempo. 
+\begin{equation*}
+    H_{v,w}=
+    \left\{
+    \begin{array}{ll}
+    \gamma  &  v\neq w \;\; (v,w)\in \Gamma \\
+    0   & v\neq w  \;\; (v,w) \not\in \Gamma  \\
+    -d(v)\gamma & v=w.     
+    \end{array}
+    \right.
+\end{equation*}{}
+
+\begin{equation*}
+    \bra{a}\hat{H}\ket{b}=K_{a,b}
+\end{equation*}{}
+
+\begin{equation*}
+    \bra{v}\hat{H}\ket{v'}=
+    \left\{
+    \begin{array}{cll}
+    \gamma  &  v\neq v' & (v,w)\in G  \\
+    0 & \text{otherwise}  & \end{array}
+    \right.
+\end{equation*}{}
+$\hat{H}$ es hermítica, así que la probabilidad se conserva $\sum_v |\braket{v|\psi(t)}|^2=1$.
