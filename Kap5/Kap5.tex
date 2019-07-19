@@ -1,33 +1,14 @@
-
-\section{Algoritmos con base en caminatas cuánticas}
-Empezando por el algoritmo de Shor para la factorización, los primeros algoritmos se basaban en la transformada de fourier para poder identificar un subgrupo escondido (Lomont 2004). En los límites de este método se plantea la pregunta sobre otros posibles métodos eficientes, y una de las búsquedas se lleva a cabo en la correspondiente cuántica al área exitosa de las caminatas aleatorias.
+\chapter{Algoritmos con base en caminatas cuánticas}
+Empezando por el algoritmo de Shor para la factorización, los primeros algoritmos se basaban en la transformada de fourier para poder identificar un subgrupo escondido [Lomont 2004]. En los límites de este método se plantea la pregunta sobre otros posibles métodos eficientes, y una de las búsquedas se lleva a cabo en el área cuántica correspondiente a las  exitosas caminatas aleatorias clásicas.
 En esta sección mencionamos algunos problemas de la computación para los cuales existe un algoritmo basado en una caminata cuántica que lo soluciona.\\
 
 Iniciamos con el problema de atravesar la \textit{gráfica de árboles ligados} $G_n$, cuyo algoritmo fue el primero que incluyó una caminata cuántica con una mejora exponencial respecto de la clásica, en el marco del oráculo. En la sección anterior mostramos su dinámica, ahora cómo es posible aplicarla en un algoritmo. Esto nos sirve para presentar el concepto del \textit{oráculo}, en el que se basa el marco de comparación de eficiencia llamado \textit{complejidad de consultas}.\\
 
 El algoritmo de Ambainis \cite{ambainis2007quantum} para resolver el problema de los elementos distintos en un conjunto sirve como base para implementación de otros algoritmos. Finalmente, el problema de la búsqueda espacial ha tenido diferentes soluciones. El esquema de búsqueda de Szegedy \cite{szegedy2004quantum} basado en la cuantización de la caminata, y las mejoras de Magníez et al. \cite{magniez2011search} son importantes. Un ejemplo de búsqueda espacial es sobre una base de datos física.\\
 
-Los algoritmos se presentan con base en la estructura de \cite{shao}.
-\subsection{Atravesar la gráfica de árboles ligados}
-Childs et al. \cite{childs2003exponential} fueron los primeros en presentar un algoritmo basado en una caminata cuántica exponencialmente más rápido que el clásico. Para ello solucionaron el problema de atravesar la gráfica $G_n'$ desde un vértice extremo hasta el opuesto. Es un problema poco práctico pero que muestra el poder de las caminatas cuánticas. En el mismo trabajo presentaron la implementación el algoritmo como la simulación de un hamiltoniano correspondiente. \\ 
-
-El problema es el siguiente:\\
-
-\textit{Dado un oráculo de la gŕafica $G_n$, y partiendo del vértice ENTRADA, ¿cuántos pasos cuesta llegar al vértica SALIDA?}\\
-
-Los vértices reciben nombres aleatoriamente. El oráculo de la gráfica da los nombres de los vértices vecinos al que le ingresamos. Describamos primero la solución En el marco del oráculo se tiene el siguiente algoritmo clásico óptimo, no basado en una caminata aleatoria, que toma $\mathcal{O}(t^2)$. Partiendo de ENTRADA.
-\begin{center}
-    \begin{tabular}{l}
-    \hline \textbf{Algoritmo para cruzar $G_n$} \\\hline 
-    \textbf{1.} 
-    \\\hline
-    \end{tabular}{}
-\end{center}{}
-
-La implementación como algoritmo:
-\subsection{Algoritmo de elemento distinto de Ambainis}
-Los siguientes son problemas importantes solucionados con caminatas cuánticas sobre gráficas adecuadas[design,2019]:
-\begin{itemize}
+Los siguientes son problemas importantes solucionados con caminatas cuánticas sobre grafos adecuados:
+\begin{itemize}{}
+\setlength\itemsep{0.2em}
 \item graph collision problem,
 \item single source shortest path,
 \item search on the grid(65-68[design]),
@@ -42,70 +23,92 @@ Los siguientes son problemas importantes solucionados con caminatas cuánticas s
 \item algebraic property test,
 \end{itemize}{}
 
-\subsection{Búsqueda espacial}
+Los algoritmos se presentan con base en la estructura de \cite{shao}.
+\section{Atravesar $G_n$ y $G_n'$}
+\cite{childs2003exponential} presentaron el primer ejemplo de un algoritmo basado en caminatas cuánticas con ventaja exponencial. Usaron una modificación de $G_n$, llamada $G_n'$ (ver \ref{gr:Gn}). Conseguir tal ventaja sobre la gráfica $G_n$ no es posible ya que un algoritmo clásico logra el objetivo en un tiempo polinómico. $G_n'$, por su parte, no es resoluble en tiempo menor al exponencial. La modificación está en la unión de los dos árboles, en donde $G_n'$ tiene una distribución de aristas de la siguiente manera: vértice intermedio se conecta aleatoriamente con uno del otro costado de la mitad, el cual se conecta a su vez con otro del costado contrario, hasta conseguir una gráfica bipartita completa sobre esas dos columnas. \\
+
+Los autores lo describen como un problema poco práctico pero capaz de demostrar el poder de las caminatas cuánticas. En el mismo trabajo presentaron la implementación del algoritmo como la simulación de un hamiltoniano conveniente.\\ 
+
+El problema es el siguiente:\\
+
+\textit{Dado un oráculo de la gŕafica $G_n$, y partiendo del vértice ENTRADA, ¿cuántos pasos cuesta llegar al vértica SALIDA?}\\
+
+El oráculo de la gráfica da los nombres de los vértices vecinos al que le ingresamos. Describamos primero la solución En el marco del oráculo se tiene el siguiente algoritmo clásico óptimo, no basado en una caminata aleatoria, que toma $\mathcal{O}(t^2)$. Los vértices reciben nombres aleatoriamente. 
+
+%\begin{center}
+%    \begin{tabular}{l}
+%    \hline \textbf{Algoritmo para cruzar $G_n$} \\\hline 
+%    \textbf{1.} 
+%    \\\hline
+%    \end{tabular}{}
+%\end{center}{}
+
+\section{Búsqueda espacial}
 
 El problema de búsqueda espacial es el siguiente:\\
 
 \textit{Dada una gráfica, ¿cuántos pasos cuesta encontrar 1 o más elementos  marcados?}\\
 
-\noindent Un algoritmo de búsqueda típico se desarrolla en tres pasos: la etapa de preparación, la actualización y el chequeo.
+Una búsqueda clásica corresponde a tomar aleatoriamente un vértice de la gráfica, verificar si es un elemento marcado, retornar el elemento y parar si lo encontró, o lanzar una moneda y moverse a lo largo de la arista etiquetada hasta llegar al nuevo vértice. El caminante repite el proceso aleatorio sin memoria del camino ni clave para encontrar el objetivo, que sólo alcanza cuando se para sobre el vértice marcado.\\
+
+Un algoritmo de búsqueda típico se desarrolla en tres pasos: la etapa de preparación, la actualización y la verificación:
 \begin{enumerate}
     \item $[$Preparar$]$ Acceder a algún estado de $\Gamma$, usualmente un estado aleatorio o uno de superposición uniforme en el caso cuántico,
-    \item $[$Actualizar$]$ llevar de un estado a otro estado con una caminata aleatoria (clásica o cuántica), y
-    \item $[$Chequear$]$ chequear durante la caminata para saber si el estado actual está marcado.
+    \item $[$Actualizar$]$ Llevar de un estado a otro estado con una caminata aleatoria (clásica o cuántica), y
+    \item $[$Verificar$]$ verificar para saber si el estado actual está marcado.
 \end{enumerate}
-"El algoritmo debe ser local sobre la gráfica." Childs.
 
 \begin{center}
-    \begin{tabular}{l}
+    \begin{tabular}{|l|}
     \hline \textbf{Algoritmo de búsqueda clásico} por 1 paso de caminata aleatoria\\\hline 
     \textbf{1.} [Preparar] Obtener de $\Gamma$ un vértice $u$.\\
     \textbf{2.} Realizar lo siguiente $h=\mathcal{O}(1/(\epsilon \delta))$ número de veces, de acuerdo a la estimación [(5.11) Shao]:\\
-    2.1 [Chequear] Si $u$ está marcado, retornar $u$ y  parar.\\
-    2.2. [Actualizar] Empezar desde $u$, simular una caminata aleatoria $P$ en $\Omega$ en un paso.\\
+    2.1. [Actualizar] Empezar desde $u$, simular una caminata aleatoria $P$ en $\Gamma$ en un paso.\\
+    2.2 [Verificar] Si $u$ está marcado, retornar $u$ y  parar.\\
     \textbf{3.} Retornar "no ítem marcado"\\\hline
     \end{tabular}{}
 \end{center}{}
 
 \begin{center}
-    \begin{tabular}{l}
+    \begin{tabular}{|l|}
     \hline \textbf{Algoritmo de búsqueda clásico} por multipasos de caminata aleatoria\\\hline 
     \textbf{1.} [Preparar] Obtener de $\Gamma$ un vértice $u$.\\
-    \textbf{2.} Realizar lo siguiente $h(\pi^T,\mathcal{M})=\mathcal{O}(1/(\epsilon ))$ número de veces (que es el \textit{hitting time} promedio desde \\la distribución estacionaria en $\Gamma$:\\
-    2.1 [Chequear] Si $u$ está marcado, retornar $u$ y  parar.\\
-    2.2. [Actualizar] Empezar desde $u$, simular una caminata aleatoria $P$ en $\Omega$ durante $T_{\text{mix}}=\mathcal{O}(1/\delta)$ pasos\\ (hasta alcanzar la distribución estacionaria $\pi^T$).\\
+    \textbf{2.} Realizar lo siguiente $h(\pi^T,\mathcal{M})=\mathcal{O}(1/(\epsilon ))$ número de veces (que es el \textit{hitting time} promedio\\ desde la distribución estacionaria en $\Gamma$:\\
+    2.2. [Actualizar] Empezar desde $u$, simular una caminata aleatoria $P$ en $\Gamma$ durante $T_{\text{mix}}=\mathcal{O}(1/\delta)$\\ pasos (hasta alcanzar la distribución estacionaria $\pi^T$).\\
+    2.1 [Verificar] Si $u$ está marcado, retornar $u$ y  parar. \\
     \textbf{3.} Retornar "no ítem marcado"\\\hline
     \end{tabular}{}
 \end{center}{}
 
-\subsubsection{Algoritmos de búsqueda sobre gráficas finitas}
-La idea de Benioff [Cite Benioff 2002] fue pionera en la  búsqueda espacial asociando a una región finita del espacio una gráfica sobre cuyos vértices se para un \textit{robot cuántico}, y sobre cuyas aristas camina.
-Una búsqueda clásica corresponde a tomar aleatoriamente un vértice de la gráfica, lanzar una moneda de dimensión igual al grado del vértice, y moverse a lo largo de la arista etiquetada hasta llegar a nuevo vértice. El caminante repite el proceso aleatorio sin memoria del camino ni clave para encontrar el objetivo, que sólo alcanza cuando se para sobre el vértice marcado.\\
+\section{Algoritmos de búsqueda sobre grafos  finitos}
+La idea de [Benioff, 2002] fue pionera en la  búsqueda espacial asociando a una región finita del espacio un grafo sobre cuyos vértices se para un \textit{robot cuántico}, y sobre cuyas aristas camina. Presentamos los casos cuánticos de la red finita en 2D con condiciones de frontera periódicos (que es un \textit{toro}) y el hipercubo que usan los resultados encontrados arriba.\\
 
-Presentamos los casos cuánticos de la red finita en 2D con condiciones de frontera periódicos (que es un \textit{toro}) y el hipercubo que usan los resultados encontrados arriba.\\
-La idea consiste en usar el operador de difusión de Grover $\hat{R}=2\sum_{v\in \mathcal{M}}\ket{v}\bra{v}-I$  (ver apéndice (\ref{sec:Grover})) en cada iteración, intercalado con la caminata usual sobre la gráfica. El resultado final depende altamente de la distribución de los elementos marcados sobre la gráfica cuando $|\mathcal{M}|>1$, así que evaluamos el caso en que hay un solo elemento marcado. En ese caso, $R=2\ket{0}\ket{0}-I$, donde llamamos $0$ al vértice marcado.
-\noindent El operador de búsqueda es $\hat{U'}=\hat{U}\hat{R}$. De $\hat{U'}$, sean los autovalores $\{e^{i\lambda_1},\dots, e^{i\lambda_k}\}$. Para la mayor parte de las gráficas, los autovalores $\lambda$ y $\lambda'$ corresponden a los autovalores  prevalentes de $\hat{U'}$ para tiempos largos (no presentamos demostración), (ver gráfica \ref{gr:EspectroBusqueda}). Los respectivos autovectores son $\ket{\lambda}$ y $\ket{\lambda'}$. $\lambda=\lambda'$ para muchas gráficas. Lo anterior nos permite escribir:
+La idea consiste en usar el operador de difusión de Grover $\hat{R}=2\sum_{v\in \mathcal{M}}\ket{v}\bra{v}-I$ en cada iteración (ver apéndice (\ref{sec:Grover})), intercalado con la caminata usual $\hat{U}$. Por el método de \textit{descomposición espectral} mostramos que tras un tiempo óptimo, la probabilidad de éxito es significativa.\\
 
+Evaluamos en general el caso en que hay un solo elemento marcado, dado que para muchos elementos marcados, el resultado depende altamente de su distribución sobre el grafo. Llamando $0$ al vértice marcado, $\hat{R}=2\ket{0}\ket{0}-I$.\\
+
+El operador de búsqueda es $\hat{U'}=\hat{U}\hat{R}$. Sean los autovalores $\{e^{i\lambda_1},\dots, e^{i\lambda_k}\}$ de $\hat{U'}$. Se puede mostrar que para tiempos grandes la búsqueda está determinada principalmente por dos autovalores de $\hat{U}'$, el de argumento que es el menor positivo, $\lambda$, y el de argumento que es el mayor negativo, $\lambda'$. (Ver gráfica \ref{gr:EspectroBusqueda}). Los respectivos autovectores son $\ket{\lambda}$ y $\ket{\lambda'}$. Lo anterior nos permite escribir para tiempos grandes:
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Kap5/SpatialSearchUprimePortugal.png}
-\caption{Autovalores de $\hat{U}$ y $\hat{U'}$. El de argumento menor positivo $e^{i\lambda}$ y el de mayor negativo $e^{-i\lambda'}$ están señalados. Para $t$ muy grandes $\lambda$ y $\lambda'$ tienden a 1, y son los únicos relevantes para la dinámica.
+\caption{Autovalores de $\hat{U}$ y $\hat{U'}$. Para $t$ muy grandes $\lambda$ y $\lambda'$ tienden a 1, y son los únicos relevantes para la dinámica.
 \cite{portugal2013quantum}}
 \label{gr:EspectroBusqueda}
 \end{figure}
-
 \begin{equation}
-    \hat{U}^t=e^{i\lambda t}\ket{\lambda}\bra{\lambda}+e^{i\lambda't}\ket{ \lambda'}\bra{\lambda'}+\hat{U}_{\text{small}}^t
+    \hat{U}^t=e^{i\lambda t}\ket{\lambda}\bra{\lambda}+e^{i\lambda't}\ket{ \lambda'}\bra{\lambda'}+\hat{U}_{\text{pequeño}}^t
 \end{equation}{}
-$\hat{U'}$ actúa no trivialmente sobre el subespacio ortogonal al generado por los otros dos, $\{\ket{\lambda},\ket{\lambda'}\}^{\perp}$
+La probabilidad de hallar $0$ en $t$ es $p(t)=|\braket{0|\hat{U}^t|\psi(0)}|^2$, 
 
 \begin{equation}
     p(t)=|e^{i\lambda t}\braket{0|\lambda}\braket{\lambda|\psi(0)}+e^{i\lambda't}\braket{0|\lambda'}\braket{\lambda'|\psi(0)}+\epsilon|^2
-    \label{ec:ProbEigenphaseDeco}\,\qquad\text{donde}\,\,\epsilon=\braket{0|\hat{U}^t_{\text{small}}|\psi(0)}
+    \label{ec:ProbEigenphaseDeco}\,\qquad\text{donde}\,\,\epsilon=\braket{0|\hat{U}^t_{\text{peq}}|\psi(0)}.
 \end{equation}
+$\hat{U}_{\text{peq}}$ actúa no trivialmente sobre el subespacio ortogonal al generado por los otros dos, $\{\ket{\lambda},\ket{\lambda'}\}^{\perp}$, pero $\lim_{t\xrightarrow{}\infty}\epsilon=0$.\\
 
-Se puede demostrar para ciertas gráficas que $\lim_{N\xrightarrow{}\infty}\epsilon=0$. Resta encontrar $\lambda$, $\lambda'$, $\braket{0|\lambda}$, $\braket{0|\lambda'}$, y $\braket{\lambda|\psi(0)}$, $\braket{\lambda'|\psi(0)}$. Encontramos los resultados para $\lambda$, los correspondientes de $\lambda'$ tienen un desarrollo análogo. Llevamos a cabo el objetivo asumiendo la descomposición espectral de $\hat
-{U}$: $\hat{U}\ket{\psi_k}=e^{i\phi_k}\ket{\psi_k}$.
+El objetivo se cumple al encontrar $\lambda$, $\lambda'$, $\braket{0|\lambda}$, $\braket{0|\lambda'}$, y $\braket{\lambda|\psi(0)}$, $\braket{\lambda'|\psi(0)}$. En la estrategia de descomposición espectral, el primer paso es \textit{asumir} la descomposición de $\hat
+{U}$: $\hat{U}\ket{\psi_k}=e^{i\phi_k}\ket{\psi_k}$.\\
+
 Encontramos $\lambda$ resolviendo $A-B\lambda$-C$\lambda^2$=$\mathcal{O}(\lambda^3)$, con
 \begin{align}
     A&=2\sum_{\phi_k=0}|\braket{0|\psi_k}|^2,\\
@@ -130,13 +133,14 @@ La probabilidad (\ref{ec:ProbEigenphaseDeco}):
 \end{equation}
 de lo cual se tiene que $t_{\text{opt}}=\lfloor\frac{\pi}{2\lambda}\rfloor$, y $p_{\text{success}}(t)=\dfrac{|\braket{\psi(0)|0}|^2}{AC}$
 
-\subsubsection*{Gráfica 2D finita}
+\subsection{Gráfica 2D finita}
 \begin{align}
     t_{\text{opt}}&=\lfloor\frac{\pi \sqrt{C}\sqrt{N\ln N}}{2\sqrt{2}}\rfloor\\
-    p_{\text{success}}&=\frac{1}{2C\ln N}+\mathcal{O}^{-N}
+    p_{\text{exito}}&=\frac{1}{2C\ln N}+\mathcal{O}^{-N}
 \end{align}
 $\hat{U'}$ se puede expresar como $\hat{U'}=\hat{S}\hat{C'}$, que es una caminata cuántica en el modelo de moneda con dos particularidades: $\hat{S}$ es una moneda \textit{flip-flop}, que opera trasladando, y además cambia el estado de moneda al valor contrario. Por su parte, $\hat{C'}$ es una moneda inhomogenea dependiente de la posición.
-\subsubsection*{Hipercubo}
+\subsection{Hipercubo}
+
 \begin{align}
     t_{\text{opt}}&=\lfloor\frac{\pi \sqrt{CN}}{4}\rfloor\\
     p_{\text{success}}&=\frac{1}{C}+\mathcal{N^{-1}}.
@@ -145,14 +149,14 @@ Esta búsqueda sobre el hipercubo basada en una caminata cuántica iguala la cot
 Esta búsqeuda también se puede expresar como $\hat{U'}=\hat{S}\hat{C'}$.\\
 \cite{shenvi2003quantum} \cite{ambainis2003quantum} Ambainis, 2003.
 \begin{center}
-    \begin{tabular}{l}
+    \begin{tabular}{|l|}
     \hline \textbf{Búsqueda en un hipercubo} \\\hline 
     \textbf{1.} [Preparar] Preparar el estado inicial $\ket{\psi}$:\\ $\ket{\psi}=\dfrac{1}{\sqrt{Nn}}\sum_{x,i}\ket{x}\ket{i}$\\
     \textbf{2.} Realizar lo siguiente $\mathcal{O}(\sqrt{N})$ número de veces:\\
-    2.1. [Chequear y lanzar la moneda] Si $x$ no está marcado aplicar $R$ al registro $\ket{i}$,\\
-    sino aplicar $-\mathbb{I}$ al registro $\ket{i}$\\
+    2.1. [Verificar y lanzar la moneda] Si $x$ no está marcado aplicar $\hat{R}$ al registro $\ket{i}$,\\
+    sino aplicar $-I$ al registro $\ket{i}$\\
     2.2. [Actualizar] Aplicar $S:\ket{x}\ket{i}\xrightarrow{}\ket{\text{flip}(x,i)}\ket{i}$\\
-    \textbf{3.} Medir el estado final del primero registro ($\ket{x}$).\\\hline
+    \textbf{3.} Medir el estado final del primero registro $\ket{x}$.\\\hline
     \end{tabular}{}
 \end{center}{}
 
@@ -160,7 +164,7 @@ Esta búsqeuda también se puede expresar como $\hat{U'}=\hat{S}\hat{C'}$.\\
 
 Trabajos posteriores modifican su método mejorando la eficiencia [Tulsi], [Ambainis]
 
-\subsection{Otros marcos de búsqueda espacial}
+\section{Otros marcos de búsqueda espacial}
 \cite{magniez2011search} Magniez, 2011,
 \cite{szegedy2004quantum} Szegedy presented a speed up for markov chains based algorithms. \\
 Este es un ejemplo, \\
@@ -187,7 +191,7 @@ Una aplicación interesante de estas caminatas se da en la memoria \textit{ECM} 
     \begin{tabular}{l}
     \hline \textbf{Marco de caminata cuántica MNRS} \\\hline 
     \textbf{1.} Preparar el estado inicial $\ket{\pi}$:\\
-    $\ket{\pi}=\sum_{u\in G}\sqrt{\pi_u}\ket{u}\ket{p_u}=\sqrt{\sum_{u\in M}\pi_u}\ket{\pi_{\text{good}}}+\sqrt{\sum_{u\nin M}\pi_u}\ket{\pi_{\text{good}}}$\\
+    $\ket{\pi}=\sum_{u\in G}\sqrt{\pi_u}\ket{u}\ket{p_u}=\sqrt{\sum_{u\in M}\pi_u}\ket{\pi_{\text{good}}}+\sqrt{\sum_{u\not\in M}\pi_u}\ket{\pi_{\text{good}}}$\\
     \textbf{2.} Realizar lo siguiente $\mathcal{O}(1/\sqrt{\epsilon})$  número de veces:\\
     2.1. $[$Chequear$]$ Hacer la reflexión $R_{\ket{\pi_{\text{bad}}}}$ con respecto a $\ket{\pi_{bad}}$\\
     2.2. $[$Actualizar$]$ Hacer la reflexión $R_{\pi}$ con respecto a $\ket{\pi}$.\\
@@ -209,12 +213,3 @@ Una aplicación interesante de estas caminatas se da en la memoria \textit{ECM} 
     \caption{\cite{shao}}
     \label{AlgoritmosBusqueda}
 \end{table}{}
-
-\subsubsection*{Árbol de hexágonos}
-En este caso no presentamos desarrollos analíticos sino los resultados de implementaciones experimentales. 
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.7\textwidth]{Kap5/HexagonWalkTang2018.png}
-\caption{Experimental }
-\end{figure}
