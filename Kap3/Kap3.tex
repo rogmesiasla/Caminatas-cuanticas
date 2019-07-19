@@ -1,7 +1,7 @@
 \chapter{Caminatas cuánticas sobre la línea}
 
-\section{Idea original}\label{IdeaOriginal}
-La idea seminal de \cite{aharonov2001quantum} se basa en que hacer mediciones proyectivas a un estado en superposición es un evento aleatorio. Los pasos del caminante dependen de dicha aleatoriedad.\\
+\section{Primera idea}\label{IdeaOriginal}
+La idea inicial de [Aarason, 1993] se basa en que hacer mediciones proyectivas a un estado en superposición es un evento aleatorio. Los pasos del caminante dependen de dicha aleatoriedad.\\
 
 Consideremos una partícula con espín $1/2$ capaz de trasladarse en 1 dimensión (a lo largo de una línea). Su posición en $t$ se describe por un paquete de onda $\psi_{x_0}(t)$ centrado en $x_0$ y su espín $s$ se describe en la base de $\hat{S}_z$, $\{\ket{\downarrow},\ket{\uparrow}\}$. 
 El espacio completo de la caminata es $\mathcal{H}=\mathcal{H}_S\otimes\mathcal{H}_P=\text{span}\left\{\ket{\sigma}\otimes \ket{\psi_{x_0}}|\sigma=\{\downarrow,\uparrow\},\,x_0\in \mathbb{Z}\right\}$. La amplitud $\ket{\Psi}$ es
@@ -74,14 +74,14 @@ La medición aproxima la caminata cuántica a su contraparte clásica. Vimos có
 Sin embargo, notemos que este nuevo proceso da como resultado una caminata aleatoria clásica, en la cual cada paso tiene probabilidad fija de ir hacia alguno de los dos lados.
 
 \subsection{Un modelo con moneda}\label{sec:LineaInfinita}
-En este modelo simplificamos las caminatas cuánticas en dos aspectos\cite{kempe2003quantum} : (1) el espacio de posiciones es discreto, y (2) las traslaciones son de magnitud constante e igual a $1$. (1) impone pensar en una partícula localizada puntualmente y no como un paquete de onda con dimensión finita, por ejemplo, comúnmente las trayectorias tienen posición inicial en $x=0$. 
+En este modelo simplificamos las caminatas cuánticas en dos aspectos \cite{kempe2003quantum} : (1) el espacio de posiciones es discreto, y (2) las traslaciones son de magnitud constante e igual a $1$. (1) impone pensar en una partícula localizada puntualmente y no como un paquete de onda con dimensión finita, por ejemplo, comúnmente las trayectorias tienen posición inicial en $x=0$. 
 Por otro lado, (2) restringe la posibilidad de traslaciones muy largas o muy cortas como encontramos en la sección anterior $\ref{IdeaOriginal}$, en cambio, las traslaciones posibles son de longitud definida e igual en todo paso. Con este modelo nos centramos en las consecuencias de las correlaciones cuánticas tras muchos pasos.\\
 
 El espacio de la caminata se genera por dos subespacios, $\mathcal{H}=\mathcal{H}_C\otimes\mathcal{H}_P$: el de la moneda
 $\mathcal{H}_C=\text{span}\{\ket{0},\ket{1}\}$, y el de la posición $\mathcal{H}_P=\text{span}\{\ket{x}|x\in \mathbb{Z}\}$. \\
 
 Más allá de las simplificaciones, la evolución es equivalente a la de la sección anterior: lanzar la moneda y después dar un paso según el estado final de la moneda (rotar el espín y luego caminar de acuerdo al espín final). 
-La evolución es $\hat{U}=\hat{S}(\hat{C}\otimes I_{\mathcal{P}})$. $\hat{C}$ opera sobre $\mathcal{H}_C$,  $\hat{S}$ opera sobre $\mathcal{H}_P$, y $\hat{U}$ opera sobre $\mathcal{H}$. Los tres son operadores unitarios.
+La evolución se da con $\hat{U}=\hat{S}(\hat{C}\otimes I)$. $\hat{C}$ opera sobre $\mathcal{H}_C$,  $\hat{S}$ opera sobre $\mathcal{H}_P$, y $\hat{U}$ opera sobre $\mathcal{H}$. Los tres son operadores unitarios.
 Podemos escribir
 
 \begin{equation}
@@ -89,38 +89,33 @@ Podemos escribir
 \end{equation}{}
 $\hat{C}$ sólo opera sobre las direcciones.\\
 
-Debido a que la definición de $\hat{S}$ es estricta y tiene una única finalidad, la cual es realizar las traslaciones impuestas por $\hat{C}$, es claro que las diversas caminatas que podamos configurar están contenidas en $\hat{C}$. 
-Consideremos el análisis de la caminata con el famoso operador de \textit{Hadamard} $\hat{H}$, 
-\begin{equation*}
-\hat{H}\doteq
+Debido a que la definición de $\hat{S}$ es estricta y tiene una única finalidad, la cual es realizar las traslaciones impuestas por $\hat{C}$, es claro que las diversas caminatas que podamos configurar están contenidas en $\hat{C}$ y no en $\hat{S}$ (más adelante vemos que el estado inicial tiene grados de libertad equivalentes a los que introduce la moneda).
+Consideremos el análisis de la caminata con el famoso operador de \textit{Hadamard}
+\begin{equation}
+\hat{H}=\frac{1}{\sqrt{2}}
 \begin{pmatrix}
 1 & 1\\
 1 & -1
-\end{pmatrix}
-\end{equation*}{}
-que posee la cualidad de ser equilibrada: después de un paso o una aplicación, la probabilidad de la partícula de estar a la derecha o a la izquierda en ambos casos es $1/2$. Exploremos la primera caminata de este trabajo con esta moneda.\\
+\end{pmatrix},
+\end{equation}{}
+que es una moneda equilibrada: la probabilidad de medir $\ket{\uparrow}$ ó $\ket{\downarrow}$ es $1/2$ en ambos casos. El siguiente es un paso desde el estado inicial $\ket{\downarrow}\otimes\ket{x=0}$
 
-El siguiente es un paso desde el estado inicial $\ket{1}\ket{x=0}$
-\begin{align*}
-\ket{\uparrow}\otimes\ket{0}&\xrightarrow{\;\;\;\hat{H}\;\;\;}\dfrac{1}{\sqrt{2}}(\ket{\uparrow}+\ket{\downarrow})\otimes\ket{0}\\
-&\xrightarrow{\;\;\;\hat{S}\;\;\;}\dfrac{1}{\sqrt{2}}(\ket{\uparrow}\otimes\ket{1}+\ket{\downarrow})\otimes\ket{-1})
-\end{align*}{}
-Una medición sobre el espacio de moneda en la base $\{\ket{0},\ket{1}\}$ da como resultado la posición $\ket{1}$ con probabilidad $1/2$, y $\ket{-1}$ con la misma probabilidad.
-Para mantener las correlaciones nos abstenemos de medir a cada paso y lo hacemos sólo hasta el final. Por ejemplo, después de 3 pasos:
-\begin{align*}
-\ket{\phi_{ini}}&\xrightarrow{\;\;\;\hat{U}\;\;\;}\dfrac{1}{\sqrt{2}}(\ket{\uparrow}\otimes\ket{1}-\ket{\downarrow}\otimes\ket{-1}\\
+\begin{align}
+\ket{\downarrow}\otimes\ket{0}&\xrightarrow{\;\;\hat{H}\otimes I\;\;\;}\dfrac{1}{\sqrt{2}}(\ket{\uparrow}-\ket{\downarrow})\otimes\ket{0}
+\xrightarrow{\;\;\;\hat{S}\;\;\;}\dfrac{1}{\sqrt{2}}\ket{\uparrow}\otimes\ket{1}-\dfrac{1}{\sqrt{2}}\ket{\downarrow}\otimes\ket{-1}
+\end{align}{}
+
+Una medición sobre el espacio de moneda en la base $\{\ket{\downarrow},\ket{\uparrow}\}$ da como resultado la posición $\ket{x=+1}$ con probabilidad $1/2$, y $\ket{x=-1}$ con la misma probabilidad.
+Para mantener las correlaciones nos abstenemos de medir a cada paso y lo hacemos sólo hasta el final. Después de 3 pasos:
+\begin{align}
+\ket{\downarrow}\otimes\ket{0}&\xrightarrow{\;\;\;\hat{U}\;\;\;}\dfrac{1}{\sqrt{2}}(\ket{\uparrow}\otimes\ket{1}-\ket{\downarrow}\otimes\ket{-1}\\
 &\xrightarrow{\;\;\;\hat{U}\;\;\;}\dfrac{1}{2}(\ket{\uparrow}\otimes\ket{2}-(\ket{\uparrow}-\ket{\downarrow})\otimes\ket{0}+\ket{\downarrow}\otimes\ket{-2})\\
-&\xrightarrow{\;\;\;\hat{U}\;\;\;}\dfrac{1}{2\sqrt{2}}(\ket{\uparrow}\otimes\ket{3}+\ket{\downarrow}\otimes\ket{1})+\ket{\uparrow}\otimes\ket{-1}-2\ket{\downarrow}\otimes\ket{-1}-\ket{\downarrow}\otimes\ket{-3}),
-\end{align*}{}
-En el estado final es más probable obtener $\ket{x=-1}$ que cualquiera otra posición, inclusive la simétrica $\ket{+1}$. La tabla \ref{TablaCuantica} muestra la probabilidad sobre la línea hasta $t=5$. Toda posición que no es del extremo tiene amplitud igual a la suma de las amplitudes de sus primeros vecinos en el paso $t-1$. A propósito, los valores extremos sin interferencias tienen amplitud $p_{\text{extremos}}=1/2^t$. Para la posición junto a un extremo, la amplitud tiene relación con la amplitud de la posición $\ket{1}$ en $t=1$, como se puede comprobar directamente sobre la tabla trazando una diagonal de pendiente 1, que corresponde a algo así como un cono de luz (XXX): todos los valores incluidos dentro de las dos pendientes tienen influencia del valor inicial.\\
+&\xrightarrow{\;\;\;\hat{U}\;\;\;}\dfrac{1}{2\sqrt{2}}(\ket{\uparrow}\otimes\ket{3}+\ket{\downarrow}\otimes\ket{1})+\ket{\uparrow}\otimes\ket{-1}-2\ket{\downarrow}\otimes\ket{-1}-\ket{\downarrow}\otimes\ket{-3}).
+\end{align}{}
+Si medimos ahora, ¡resulta que obtener $\ket{x=-1}$ es más probable ($5/8$) que cualquier otra posición!, inclusive la simétrica $\ket{x=+1}$. Esto es consecuencia de que sobre los valores positivos prevalece una interferencia destructiva, y en el lado izquierdo una interferencia constructiva.\\
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=1\textwidth]{Kap3/QWonlineNayak.png}
-\caption{Simulación y función asintótica según la aproximación por el método de fase estacionaria, de una camianata con moneda de Hadamard y estado inicial $\ket{\downarrow,0}$, después de 100 pasos.}
-\label{gr:Hadamard100Simulacion}
-\end{figure}
-
+En las posiciones y tiempos $x+t$ impares la probabilidad es siempre nula. Todas los estados en posiciones alcanzadas por la caminata, diferentes a los extremos, en el tiempo $t$ tienen amplitud igual a la suma de las amplitudes de sus primeros vecinos en el paso previo $t-1$. La amplitud de los estados con posiciones extremas provienen de un único estado previo, también extremo, y tienen amplitud $1/2^t$. 
+Estas influencias se pueden comprobar directamente sobre la tabla \ref{TablaCuantica} trazando dos diagonales de pendiente $\pm1$ que corresponden a una versión simple de un cono de luz\footnote{Lo que no es sinsentido ya que la tabla corresponde a una gŕafica de espacio-tiempo $x-t$ y la velocidad de propagación de la información tiene un valor superior límite, igual a una longitud por cada paso de tiempo}: todos los valores incluidos dentro de las dos pendientes tienen influencia del valor central si sus tiempos son mayores a los de este último. De forma complementaria, la amplitud del valor central contiene las amplitudes de aquellos que para tiempos anteriores están incluidos en el cono.
 
 \begin{table}[h]
     \centering
@@ -136,22 +131,21 @@ En el estado final es más probable obtener $\ket{x=-1}$ que cualquiera otra pos
     \hline
     \end{tabular}
     \medskip
-    \caption{Las interferencias dan como resutado 
-    probabilidades asimétricas alrededor de cero. Una mayor inteferencia negativa hace que el pico de la derecha sea menor que el de la iuerida, resultado de interferencias constructivas.}
+    \caption{Evolución $\ket{\downarrow}\ket{0}$ con la moneda de Hadamard hasta $t=5$.}
     \label{TablaCuantica}
 \end{table}
-En las posiciones y tiempos $x+t$ impares la probabilidad es siempre nula, mientras que nunca lo es para $x+t$ par. La gráfica (\ref{gr:LineaHadamard100}) presenta la caminata en $t=100$ desde el estado inicial $\ket{\downarrow}\otimes\ket{0}$. 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{Kap3/comparisonQW.png}
-\caption{La distribución gaussiana de la caminata clásica y la distribución bimodal de la caminata cuántica con moneda de Hadamard y estado inicial $\ket{\downarrow,0}$, después de 100 pasos.}
+\caption{Distribución gaussiana y de la caminata cuántica tras 100 pasos. La moneda es $\hat{H}$ y $\ket{\psi(0)}=\ket{\downarrow,0}$ \cite{kendon2007decoherence}.}
 \label{gr:LineaHadamard100}
 \end{figure}
 
-\subsubsection{Grados de libertad de la moneda}\label{sec:Moneda}
-Hemos analizado la caminata lineal con la moneda balanceada de Hadamard, que, sin embargo, genera una caminata asimétrica. En esta sección comprobamos que la evolución de la caminata depende tanto de la moneda como de la condición inicial. Después se muestra que ambas condiciones son equivalentes.
-El estado inicial $\ket{\psi_{\text{sim}}}=\frac{1}{\sqrt{2}}(\ket{0}+i\ket{1})\ket{x=0}$ hace simétrica la caminata con la moneda de Hadamard. La evolución para cada estado de la superposición es independiente debido a la fase $i$. Sin embargo, debido a que la probabilidad es independiente de la fase, el resultado final es la suma de dos distribuciones para dos caminatas independientes, la primera con sesgo hacia la izquierda (fase inicial $0$) y la otra hacia derecha (fase inicial $\pi$), que juntas hacen la gráfica simétrica \ref{gr:Hadamard100Symmetric}. \\
+\subsection{Grados de libertad de la moneda}\label{sec:Moneda}
+Hemos visto que la moneda balanceada de Hadamard, sin embargo, puede generar una caminata asimétrica. Hay dos formas de obtener una caminata simétrica: la primera es usando $\hat{H}$ pero partiendo de un estado inicial simétrico. La segunda es usando una moneda balanceada que incluya una fase adecuada. En esta sección comprobamos que la evolución depende de la moneda tanto como del estado inicial. Después mostramos que ambas condiciones son alternativas.\\
+
+El estado inicial $\ket{\Psi_{\text{sim}}}=\frac{1}{\sqrt{2}}(\ket{0}+i\ket{1})\otimes \ket{0}$ hace que la caminata con la moneda de Hadamard sea simétrica. La evolución para cada estado arriba y abajo de la superposición inicial es independiente debido a la diferencia de fases. Esto se traduce en que la evolución lleva a cabo dos caminatas independientes \textit{paralelamente}, la primera con sesgo hacia la izquierda y la otra hacia derecha. Al final la probabilidad que es la suma directa de las dos caminatas tiene la forma simétrica de la gráfica \ref{gr:Hadamard100Symmetric}. \\
 
 \begin{figure}[ht]
 \centering
@@ -160,29 +154,28 @@ El estado inicial $\ket{\psi_{\text{sim}}}=\frac{1}{\sqrt{2}}(\ket{0}+i\ket{1})\
 \label{gr:Hadamard100Symmetric}
 \end{figure}
 
-La misma gráfica se obtiene si usamos el estado inicial hacia izquierda y la siguiente moneda balanceada diferente a la de Hadamard \cite{kempe2003quantum},
-\begin{equation*}
-\hat{Y}\doteq
+La segunda posibilidad es usar la siguiente moneda balanceada $\hat{Y}$ sobre cualquier estado inicial en la base $\ket{\downarrow},\ket{\uparrow}$, en cuyo caso, la transformación sobre $\ket{\uparrow}$ está en desfase con $\ket{\downarrow}$ para cada paso, \cite{kempe2003quantum},
+\begin{equation}
+\hat{Y}=\dfrac{1}{\sqrt{2}}
 \begin{pmatrix}
 1 & i\\
 i & 1
 \end{pmatrix}
-\end{equation*}{}
-$\hat{Y}\ket{\uparrow}=\dfrac{1}{\sqrt{2}}(\ket{\uparrow}+i\ket{\downarrow})$, $\hat{Y}\ket{\downarrow}=\dfrac{1}{\sqrt{2}}(i\ket{\uparrow}+\ket{\downarrow})$.\\
+\end{equation}{}
 
-$[$Bach, 2004$]$ muestra que la moneda más general es de la forma
+La moneda más general en dos dimensiones tiene tres grados de libertad, restringida porque el determinante sea uno:
 \begin{equation}
-    C_2^{(\text{gen})}=
+    \hat{C}=
     \begin{pmatrix}
     \sqrt{\rho}&\sqrt{1-\rho}e^{e\theta}\\
     \sqrt{1-\rho}e^{i\phi} & -\sqrt{\rho}e^{i(\theta+\phi)}
     \end{pmatrix}{},
     \label{MonedaGeneral}
 \end{equation}{}
-donde $0\leq\theta,\phi\leq\pi$ son ángulos arbitrarios, $0\leq\rho\leq1$.
-Una moneda balanceada como la de Fourier y una no balanceada como la de Grover.
+donde $0\leq\theta,\phi\leq\pi$ son ángulos arbitrarios, $0\leq\rho\leq1$. La transformada de fourier es
+
 \begin{equation}
-    \hat{\mathcal{F}} C_2^{(\text{gen})}=
+    \hat{\mathcal{F}} \hat{C}=
     \begin{pmatrix}
     \sqrt{\rho}e^{-ik}&\sqrt{1-\rho}e^{i(-k+\theta)}\\
     \sqrt{1-\rho}e^{i(k+\phi)} & -\sqrt{\rho}e^{i(k+\theta+\phi)}
@@ -191,17 +184,17 @@ Una moneda balanceada como la de Fourier y una no balanceada como la de Grover.
 \end{equation}{}
 
 \subsection{Caminos con borde}
-Los caminos con borde son otro ejemplo de la diferencia entre las caminatas aleatorias clásicas y cuánticas. Recortemos la línea infinita y ubiquemos una pared absorbente que termina la caminata cuando la partícula choca con ella. Llamemos $0$ a la posición de esta pared y asumamos que el camino inicia en $1$. En el caso clásico, todos las caminatas posibles chocan con la pared, ¡ninguna la evita!. Aunque la línea es infinita y la probabilidad de recorrerla siempre hacia la derecha es diferente de cero, el análisis indica que la partícula siempre retorna y choca en $0$. La siguiente demostración que se hace por recurrencia: sea $p_{10}$ la probabilidad de llegar a $0$ por \textit{cualquier} camino; en particular, sabemos que tras una iteración, la probabilidad de ir a $0$ desde $1$ es $1/2$, y un valor igual el de ir hasta $2$. Ahora nos interesa $p_{20}$ que es la probabilidad de ir a $0$ desde $2$ a lo largo de \textit{cualquier} camino. Notemos que $p_{20}=p_{21}p_{10}$.
+Los caminos con borde son otro ejemplo de la diferencia entre las caminatas aleatorias clásicas y cuánticas. Recortemos la línea infinita y ubiquemos una pared absorbente que termina la caminata cuando la partícula choca con ella. Llamemos $0$ a la posición de esta pared y asumamos que el camino inicia en $1$. En el caso clásico, todos las caminatas posibles chocan con la pared, ¡ninguna la evita!. Aunque la línea es infinita y la probabilidad de recorrerla siempre hacia la derecha es diferente de cero, el análisis indica que la partícula siempre retorna y choca en $0$. Esto es equivalente a afirmar que la caminata clásica es \textit{recurrente}, esto es, que la partícula pasa por (choca) cada punto de la recta infinitas veces. La siguiente demostración se hace por recurrencia: sea $p_{10}$ la probabilidad de llegar a $0$ por \textit{cualquier} camino; en particular, sabemos que tras una iteración, la probabilidad de ir a $0$ desde $1$ es $1/2$, y un valor igual el de ir hasta $2$. Ahora nos interesa $p_{20}$ que es la probabilidad de ir a $0$ desde $2$ a lo largo de \textit{cualquier} camino. Notemos que $p_{20}=p_{21}p_{10}$.
 
 \begin{equation}
 p_{10}=\frac{1}{2}+\frac{1}{2}p_{21}p_{10} ,
 \label{CaminataBorde}
 \end{equation}{}
-La homogeneidad del espacio hace equivalentes todos los caminos que tienen distancia uno hacia la izquierda, en particular $p_{21}=p_{10}=p$. Teniendo en cuenta esto, la ecuación (\ref{CaminataBorde}) tiene solución para $p=1$. 
+La homogeneidad del espacio hace equivalentes a todos los caminos que tienen distancia uno hacia la izquierda, en particular $p_{21}=p_{10}=p$. Teniendo en cuenta esto, la ecuación (\ref{CaminataBorde}) tiene solución para $p=1$. 
 \begin{equation}
 p=\frac{1}{2}+\frac{1}{2}p^2 ,
 \end{equation}
-Esto es equivalente a afirmar que la caminata clásica es \textit{recurrente}, esto es, que la partícula pasa por (choca) cada punto de la recta infinitas veces.\\
+
 En el caso cuántico el estado de posición es una superposición de las posiciones posibles. Para saber si la partícula fue absorbida en el punto $b$, se necesita hacer una medición $M_b$ en $b$ (en la pared absorbente), tras cada paso $\hat{U}$,
 
 \begin{equation*}
